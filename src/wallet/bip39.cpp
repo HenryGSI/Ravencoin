@@ -159,6 +159,10 @@ bool CMnemonic::Check(SecureString mnemonic, int languageSelected)
     return fResult;
 }
 
+std::string NormalizeWords(std::string words) {
+    return words;
+}
+
 std::array<LanguageDetails, NUM_LANGUAGES_BIP39_SUPPORTED> CMnemonic::GetLanguagesDetails()
 {
     return {{
