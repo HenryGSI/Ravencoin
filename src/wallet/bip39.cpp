@@ -35,6 +35,8 @@
 #include "wallet/bip39_korean.h"
 #include "wallet/bip39_spanish.h"
 
+#include <iostream>
+
 #include <openssl/evp.h>
 
 SecureString CMnemonic::Generate(int strength, int languageSelected)
@@ -157,6 +159,11 @@ bool CMnemonic::Check(SecureString mnemonic, int languageSelected)
     }
 
     return fResult;
+}
+
+std::string CMnemonic::NormalizeWords(std::string words) {
+    std::cout << "words: " << words << std::endl;
+    return words;
 }
 
 std::array<LanguageDetails, NUM_LANGUAGES_BIP39_SUPPORTED> CMnemonic::GetLanguagesDetails()

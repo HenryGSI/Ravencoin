@@ -221,7 +221,7 @@ void MnemonicDialog3::on_acceptButton_clicked()
     std::string my_passphrase;
     int my_languageSelected;
 #endif
-    my_words = words;
+    my_words = CMnemonic::NormalizeWords(words);
     my_passphrase = passphrase;
     int my_languageSelected = languageSelected;
 

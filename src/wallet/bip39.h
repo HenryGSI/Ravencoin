@@ -60,6 +60,7 @@ public:
     static std::array<LanguageDetails, NUM_LANGUAGES_BIP39_SUPPORTED> GetLanguagesDetails();
     static const char * const* GetLanguageWords(int lang);
     static void ToSeed(SecureString mnemonic, SecureString passphrase, SecureVector& seedRet);
+    static std::string NormalizeWords(std::string words);
 private:
     CMnemonic() {};
 };
