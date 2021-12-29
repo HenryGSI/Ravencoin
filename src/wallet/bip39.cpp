@@ -161,8 +161,34 @@ bool CMnemonic::Check(SecureString mnemonic, int languageSelected)
     return fResult;
 }
 
-std::string CMnemonic::NormalizeWords(std::string words) {
-    std::cout << "words: " << words << std::endl;
+std::string CMnemonic::NormalizeWords(std::string words)
+{
+    const unsigned int nToFix1 = 4294967235;
+    const unsigned int nToFix2 = 4294967217;
+
+    const unsigned int nFixed1 = 110;
+    const unsigned int nFixed2 = 4294967244;
+    const unsigned int nFixed3 = 4294967171;
+
+    for (unsigned i = 0; i < words.length(); ++i) {
+        
+        if (i > 0) {
+            if (words.c_str()[i - 1] == nToFix1 && words.c_str()[i] == nToFix2) {
+                for (unsigned z = 0; z < i - 2; ++z) {
+                    words[z] = words.c_str()[z];
+                }
+                words[i - 1] = nFixed1;
+                words[i] = nFixed2;
+                words.push_back(words[words.length()]);
+                char temp = words[i + 1];
+                for (unsigned x = words.length(); x > i; --x) {
+                    words[x] = words.c_str()[x - 1];
+                }
+                words[i + 1] = nFixed3;
+                words[i + 2] = temp;
+            }
+        }
+    }
     return words;
 }
 
